@@ -126,8 +126,10 @@ collections:
     output: true
     sort_by: order
   writeups:
+    directory: _writeups/*/*
     output: true
     sort_by: order
+    extensions: [md, txt, log, hash]
 
 defaults:
   - scope:
