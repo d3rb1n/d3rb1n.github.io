@@ -1,5 +1,5 @@
 ---
 # the default layout is 'page'
-icon: fas fa-notes
+icon: fas fa-note-sticky
 order: 4
 ---

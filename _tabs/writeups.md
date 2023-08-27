@@ -1,5 +1,5 @@
 ---
 # the default layout is 'page'
-icon: fas fa-notebook
+icon: fas fa-book-open
 order: 5
 ---
