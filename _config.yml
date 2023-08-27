@@ -20,10 +20,10 @@ timezone:
 
 title: d3rb1n # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the sub-title
+tagline: Bug hunting, CTF's, and all things infosec. # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
+  Bug hunting, CTF's, and all things infosec.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: ""
@@ -37,8 +37,8 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: d3rb1n
+  email:  # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://twitter.com/d3rb1nator # change to your twitter homepage
