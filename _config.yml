@@ -125,6 +125,9 @@ collections:
   tabs:
     output: true
     sort_by: order
+  writeups:
+    output: true
+    sort_by: order
 
 defaults:
   - scope:

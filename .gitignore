@@ -20,3 +20,14 @@ package-lock.json
 
 # Misc
 assets/js/dist
+
+
+crackthehash/rock4.sorted.txt
+crackthehash/rock4.txt
+*booty*.txt
+!_TemplateRoom/_booty.txt
+
+hydra.restore
+
+mrrobot/fsocity.*
+mrrobot/new.txt
