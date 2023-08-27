@@ -152,7 +152,7 @@ defaults:
     values:
       layout: page
       permalink: /:title/
- - scope:
+  - scope:
       path: "" # An empty string here means all files in the project
       type: writeups
     values:
