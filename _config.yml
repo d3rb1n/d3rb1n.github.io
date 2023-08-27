@@ -38,7 +38,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: d3rb1n
-  email:  # change to your email address
+  #email:  # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://twitter.com/d3rb1nator # change to your twitter homepage
