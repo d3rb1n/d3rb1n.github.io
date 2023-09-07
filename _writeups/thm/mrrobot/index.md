@@ -8,15 +8,6 @@ tags: ctf,nmap,gobuster,apache,ubuntu,john,hydra,privesc
 
 URL: [https://tryhackme.com/room/mrrobot](https://tryhackme.com/room/mrrobot) [Medium]
 
-Tags: 
-<div style="margin-left: 5px;">
-{% assign tags = page.tags | split: "," %}
-{% for tag in tags %}
-<a href="../search/?q={{tag}}" title="Click to search by this tag"><span class="badge bg-secondary">{{tag}}</span></a>
-{% endfor %}
-</div>
-<hr>
-
 ## Reconnaissance
 
 Description of the room:
@@ -58,16 +49,16 @@ Ran the following:
 Interesting folders found:
 
 ```python
-/blog                 (Status: 301) [Size: 233] [--> http://10.10.39.226/blog/]
-/sitemap              (Status: 200) [Size: 0]
-/login                (Status: 302) [Size: 0] [--> http://10.10.39.226/wp-login.php]
-/wp-content           (Status: 301) [Size: 239] [--> http://10.10.39.226/wp-content/]
-/admin                (Status: 301) [Size: 234] [--> http://10.10.39.226/admin/]
-/wp-login             (Status: 200) [Size: 2606]
-/robots               (Status: 200) [Size: 41]
-/dashboard            (Status: 302) [Size: 0] [--> http://10.10.39.226/wp-admin/]
-/wp-admin             (Status: 301) [Size: 237] [--> http://10.10.39.226/wp-admin/]
-/phpmyadmin           (Status: 403) [Size: 94]```
+/blog        (Status: 301) [Size: 233] [--> http://10.10.39.226/blog/]
+/sitemap     (Status: 200) [Size: 0]
+/login       (Status: 302) [Size: 0] [--> http://10.10.39.226/wp-login.php]
+/wp-content  (Status: 301) [Size: 239] [--> http://10.10.39.226/wp-content/]
+/admin       (Status: 301) [Size: 234] [--> http://10.10.39.226/admin/]
+/wp-login    (Status: 200) [Size: 2606]
+/robots      (Status: 200) [Size: 41]
+/dashboard   (Status: 302) [Size: 0] [--> http://10.10.39.226/wp-admin/]
+/wp-admin    (Status: 301) [Size: 237] [--> http://10.10.39.226/wp-admin/]
+/phpmyadmin  (Status: 403) [Size: 94]```
 ```
 
 Also see: [gobuster.log](gobuster.log)
@@ -129,8 +120,8 @@ You might remember for Hydra that:
 </dl>
 </fieldset>
 
-
 #### Hydra for usernames
+
 Keeping that in mind, we want to first use a **fixed password** and our **wordlist for potential usernames**:
 
 ```bash
@@ -140,6 +131,7 @@ hydra -L ./new.txt -p test \
 ```
 
 #### Hydra for passwords
+
 From this effort, we see the username "Elliot" in various casing, so it's probably case-insenstive. Now, let's flip it around, use **"elliot" for a username** and the **wordlist for the password**:
 
 ```bash
@@ -239,6 +231,7 @@ We could run [Linpeas](https://github.com/carlospolop/PEASS-ng). Another place t
 ```bash
 find / -perm +6000 2> /dev/null | grep '/bin/'
 ```
+
 <fieldset>
 <legend>About setuid</legend>
 <p>"setuid" (or "suid") binaries are special types of binary executable files in Unix-like operating systems that have a permission mode set which allows them to be executed with the privileges of the file owner, often granting higher privileges than the user running them would normally have. These binaries can perform actions that require elevated permissions, such as modifying system files or accessing sensitive data, even if the user executing them doesn"t have those privileges.</p>
