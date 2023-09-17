@@ -1,21 +1,12 @@
 ---
 title: "THM:ohsint"
 subtitle: "TryHackMe room: https://tryhackme.com/room/ohsint"
-category: "OSINT"
-tags: osint,nmap,gobuster,dirbuster
+categories: [OSINT, THM]
+tags: [osint,nmap,gobuster,dirbuster]
 ---
 # THM:OhSINT
 
 URL: [https://tryhackme.com/room/ohsint](https://tryhackme.com/room/ohsint) [Easy]
-
-Tags: 
-<div style="margin-left: 5px;">
-{% assign tags = page.tags | split: "," %}
-{% for tag in tags %}
-<a href="../search/?q={{tag}}" title="Click to search by this tag"><span class="badge bg-secondary">{{tag}}</span></a>
-{% endfor %}
-</div>
-<hr>
 
 ## Reconnaissance
 

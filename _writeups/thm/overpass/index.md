@@ -1,21 +1,13 @@
 ---
 title: "THM:overpass"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/overpass"
-category: "CTF"
-tags: ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,ssh2john,linpeas,privesc,cron
+categories: [CTF, THM]
+tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,ssh2john,linpeas,privesc,cron]
 ---
 # THM:overpass
 
 URL: [https://tryhackme.com/room/overpass](https://tryhackme.com/room/overpass) [Easy]
 
-Tags: 
-<div style="margin-left: 5px;">
-{% assign tags = page.tags | split: "," %}
-{% for tag in tags %}
-<a href="../search/?q={{tag}}" title="Click to search by this tag"><span class="badge bg-secondary">{{tag}}</span></a>
-{% endfor %}
-</div>
-<hr>
 
 ## Reconnaissance
 

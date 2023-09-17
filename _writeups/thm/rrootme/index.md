@@ -1,15 +1,12 @@
+---
+title: "THM:rrootme"
+subtitle: "TryHackMe CTF room: https://tryhackme.com/room/rrootme"
+categories: [CTF, THM]
+tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,gpg2john,linpeas,privesc,cron]
+---
 # THM:RootMe
 
 URL: https://tryhackme.com/room/rrootme [Easy]
-
-Tags: 
-<div style="margin-left: 5px;">
-{% assign tags = page.tags | split: "," %}
-{% for tag in tags %}
-<a href="../search/?q={{tag}}" title="Click to search by this tag"><span class="badge bg-secondary">{{tag}}</span></a>
-{% endfor %}
-</div>
-<hr>
 
 ## Reconnaissance
 

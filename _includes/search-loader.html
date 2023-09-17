@@ -1,0 +1,60 @@
+<!--
+  Jekyll Simple Search loader
+  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
+-->
+{% include lang.html %}
+
+{% capture result_elem %}
+  <article class="px-1 px-sm-2 px-lg-4 px-xl-3" style="border: 1px solid darkslategrey; border-radius: 5px; -moz-border-radius: 5px;">
+    <header>
+      <h2><a href="{url}">{title}</a></h2>
+      {subtitle}
+      <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">
+        <div>
+          <div>{categories}</div>
+          <div>{tags}</div>
+        </div>
+      </div>
+    </header>
+  </article>
+{% endcapture %}
+
+
+
+
+{% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
+
+<script>
+  /* Note: dependent library will be loaded in `js-selector.html` */
+  SimpleJekyllSearch({
+    searchInput: document.getElementById('search-input'),
+    resultsContainer: document.getElementById('search-results'),
+    json: "{{ '/assets/js/data/search.json' | relative_url }}",
+    searchResultTemplate: '{{ result_elem | strip_newlines }}',
+    noResultsText: 'No items found',
+    templateMiddleware: function(prop, value, template) {
+      if (prop === 'categories') {
+        if (value === '' || value === null) {
+          return ``;
+        } else if (Array.isArray(value)) {
+          const categoryHtml = value.map(category => `<a href="/category/${category}" title="Category: ${category}" style="font-size: 1em;" >${category}</a>`).join(', ');
+          return `<div title="Categories"><i class="fa fa-folder fa-fw"></i>${categoryHtml}</div>`;
+        } else {
+          return `<div title="Categories"><i class="far fa-folder fa-fw"></i> <a href="/category/${value}" style="font-size: 1em;" >${value}</a></div>`;
+        }
+      }
+
+      if (prop === 'tags') {
+        if (value === '' || value === null) {
+          return ``;
+        } else if (Array.isArray(value)) {
+          // Handle an array of tags
+          const tagHtml = value.map(tag => `<a href="/tags/${tag}" title="Tag: ${tag}" style="font-size: 1em;" >${tag}</a>`).join(', ');
+          return `<div title="Tags"><i class="fa fa-tag fa-fw"></i> ${tagHtml}</div>`;
+        } else {
+          return `<div title="Tags"><i class="fa fa-tag fa-fw"></i><a href="/tags/${value}" style="font-size: 1em;" >${value}</a></div>`;
+        }
+      }
+    }
+  });
+</script>

@@ -1,21 +1,12 @@
 ---
 title: "THM:crackthehash"
 subtitle: "TryHackMe room: https://tryhackme.com/room/crackthehash"
-category: "Cracking"
-tags: cracking,hashcat,hash-identifier,crackstation
+categories: [CTF, THM]
+tags: [cracking,hashcat,hash-identifier,crackstation]
 ---
 # THM:Crack the hash
 
 URL: [https://tryhackme.com/room/crackthehash](https://tryhackme.com/room/crackthehash) [Easy]
-
-Tags: 
-<div style="margin-left: 5px;">
-{% assign tags = page.tags | split: "," %}
-{% for tag in tags %}
-<a href="../search/?q={{tag}}" title="Click to search by this tag"><span class="badge bg-secondary">{{tag}}</span></a>
-{% endfor %}
-</div>
-<hr>
 
 ## Reconnaissance
 

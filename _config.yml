@@ -131,6 +131,14 @@ collections:
     sort_by: order
     extensions: [md, txt, log, hash]
 
+search:
+  collections:
+    - posts
+    - pages
+    - writeups
+    - tabs
+
+
 defaults:
   - scope:
       path: "" # An empty string here means all files in the project
