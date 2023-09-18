@@ -2,10 +2,8 @@
 layout: compress
 swcache: true
 ---
-
 [
   {% assign search_items = "" %}
-  
   {% for post in site.posts %}
     {% assign post_title = post.title | jsonify %}
     {% assign post_subtitle = post.subtitle | jsonify %}
@@ -37,8 +35,6 @@ swcache: true
       {% assign search_items = search_items | append: post_json %}
     {% endif %}
   {% endfor %}
-  
-
   
   {% for collection in site.collections %}
     {% if collection.label == "writeups" %}
