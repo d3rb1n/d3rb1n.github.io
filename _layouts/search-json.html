@@ -43,9 +43,9 @@ swcache: true
           {% assign doc_title = doc.title | escape | jsonify %}
           {% assign doc_subtitle = doc.subtitle | escape | jsonify %}
           {% assign doc_url = doc.url | relative_url | jsonify %}
-          {% assign doc_categories = doc.categories | escape | jsonify %}
+          {% assign doc_categories = doc.categories | jsonify %}
           {% assign doc_category = doc.categories | first | escape | jsonify %}
-          {% assign doc_tags = doc.tags | escape | jsonify %}
+          {% assign doc_tags = doc.tags | jsonify %}
           {% assign doc_content = doc.content | strip_html | strip_newlines | remove_chars | escape | jsonify %}
           {% assign doc_snippet = doc.content | strip_html | strip_newlines | remove_chars | escape | truncate: 200 | jsonify %}
           

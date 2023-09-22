@@ -1,0 +1,16 @@
+---
+layout: none
+---
+{% assign result = result_data | jsonify %}
+<article class="px-1 px-sm-2 px-lg-4 px-xl-3" style="border: 1px solid darkslategrey; border-radius: 5px; -moz-border-radius: 5px;">
+  <header>
+    <h2><a href="{{ result.url }}">{{ result.title }}</a></h2>
+    {{ result.subtitle }}
+    <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">
+      <div>
+        <div>{{ result.categories | join: ', ' }}</div>
+        <div>{{ result.tags | join: ', ' }}</div>
+      </div>
+    </div>
+  </header>
+</article>
