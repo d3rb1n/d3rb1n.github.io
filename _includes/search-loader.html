@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Function to perform the search
       function performSearch(query) {
+        console.log('Performing search with query:', query);
         query = query.toLowerCase();
         const results = [];
 
@@ -114,6 +115,8 @@ document.addEventListener('DOMContentLoaded', function () {
             results.push(item);
           }
         });
+
+        console.log('Search results:', results);
 
         displayResults(results);
 
