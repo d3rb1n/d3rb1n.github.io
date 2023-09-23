@@ -125,10 +125,14 @@ collections:
   tabs:
     output: true
     sort_by: order
+    panel_includes:
+    - toc
   writeups:
     directory: _writeups/*/*
     output: true
     sort_by: order
+    panel_includes:
+    - toc
     extensions: [md, txt, log, hash]
 
 search:
