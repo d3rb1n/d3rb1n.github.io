@@ -135,6 +135,10 @@ collections:
     panel_includes:
     - toc
     extensions: [md, txt, log, hash, png]
+  tags:
+    output: true
+  categories:
+    output: true
 
 search:
   collections:
