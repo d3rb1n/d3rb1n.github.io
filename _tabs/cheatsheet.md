@@ -37,9 +37,7 @@ flowchart LR;
     D --> E(5. Covering Tracks*);
 ```
 
-\* Only used in ethical Red Team, or in black hat scenarios.
-
----
+*\* Only used in ethical Red Team engagements, or in black hat scenarios.*
 
 ## Commands
 
