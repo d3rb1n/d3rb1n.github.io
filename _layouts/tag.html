@@ -29,7 +29,7 @@ layout: page
   <ul class="content ps-0">
     {% for collection in site.collections %}
         {% for docs in collection.docs %}
-            {% for doc in docs | %}
+            {% for doc in docs %}
             <li class="d-flex justify-content-between px-md-3">
                 <a href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
                 <span class="dash flex-grow-1"></span>
