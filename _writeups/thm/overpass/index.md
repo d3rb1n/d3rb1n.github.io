@@ -1,7 +1,7 @@
 ---
 title: "THM:overpass"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/overpass"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,ssh2john,linpeas,privesc,cron]
 ---
 # THM:overpass

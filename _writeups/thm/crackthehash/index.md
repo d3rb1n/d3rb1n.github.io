@@ -1,7 +1,7 @@
 ---
 title: "THM:crackthehash"
 subtitle: "TryHackMe room: https://tryhackme.com/room/crackthehash"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [cracking,hashcat,hash-identifier,crackstation]
 ---
 # THM:Crack the hash

@@ -134,7 +134,7 @@ include:
   - _tabs/images/
 
 jekyll-archives:
-  enabled: [categories, tags, tabs, writeups]
+  enabled: [categories, tags]
   layouts:
     category: category
     tag: tag
@@ -142,3 +142,4 @@ jekyll-archives:
     tag: /tags/:name/
     category: /categories/:name/
 
+debug: true

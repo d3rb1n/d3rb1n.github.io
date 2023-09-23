@@ -1,7 +1,7 @@
 ---
 title: "THM:tomghost"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/tomghost"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,gpg2john,linpeas,privesc,cron]
 ---
 # THM:tomghost

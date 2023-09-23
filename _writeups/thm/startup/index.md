@@ -1,7 +1,7 @@
 ---
 title: "THM:startup"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/startup"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,ssh2john,linpeas,privesc,cron]
 ---
 # THM:startup

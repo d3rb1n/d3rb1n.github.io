@@ -1,7 +1,7 @@
 ---
 title: "THM:ohsint"
 subtitle: "TryHackMe room: https://tryhackme.com/room/ohsint"
-categories: [OSINT, THM]
+categories: [osint, thm]
 tags: [osint,nmap,gobuster,dirbuster]
 ---
 # THM:OhSINT

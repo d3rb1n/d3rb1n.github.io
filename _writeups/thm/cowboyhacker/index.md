@@ -1,7 +1,7 @@
 ---
 title: "THM:cowboyhacker"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/cowboyhacker"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,ftp,hydra,apache,ubuntu,privesc,sudo]
 ---
 # THM:cowboyhacker

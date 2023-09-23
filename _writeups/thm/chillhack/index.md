@@ -1,7 +1,7 @@
 ---
 title: "THM:chillhack"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/chillhack"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,gpg2john,linpeas,privesc,cron]
 ---
 # THM:chillhack

@@ -1,7 +1,7 @@
 ---
 title: "THM:lazyadmin"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/lazyadmin"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,searchsploit,apache,ubuntu,mysql,linpeas,privesc,upload,file-upload-bypass,sudo,sweetrice,cms]
 page_excerpts: true
 ---

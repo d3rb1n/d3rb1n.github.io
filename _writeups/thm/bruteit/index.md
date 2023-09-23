@@ -1,7 +1,7 @@
 ---
 title: "THM:bruteit"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/bruteit"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,hydra,apache,ubuntu,john,ssh2john,privesc]
 ---
 # THM:bruteit

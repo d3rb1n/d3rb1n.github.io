@@ -1,7 +1,7 @@
 ---
 title: "THM:mrrobot"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/mrrobot"
-categories: [CTF, THM]
+categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,apache,ubuntu,john,hydra,privesc]
 ---
 # THM:mrrobot

@@ -1,7 +1,7 @@
 ---
 title: "THM:agentsudoctf"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/agentsudoctf"
-categories: ["CTF", "THM"]
+category: "ctf"
 tags: [ctf, nmap, nikto, gobuster, dirbuster, steganography, steghide, binwalk, john, zip2john, apache, ubuntu, CVE-2019–14287]
 ---
 # THM:Agent Sudo
