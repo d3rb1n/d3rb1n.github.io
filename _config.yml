@@ -134,7 +134,7 @@ collections:
     sort_by: order
     panel_includes:
     - toc
-    extensions: [md, txt, log, hash]
+    extensions: [md, txt, log, hash, png]
 
 search:
   collections:
@@ -205,6 +205,9 @@ exclude:
   - rollup.config.js
   - node_modules
   - package*.json
+
+include:
+  - _tabs/images/
 
 jekyll-archives:
   enabled: [categories, tags]
