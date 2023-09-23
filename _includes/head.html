@@ -93,11 +93,24 @@
   
     {% include metadata-hook.html %}
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-          mermaid.initialize({ startOnLoad: true });
+
+            // Find all elements with the class "language-mermaid"
+            const mermaidElements = document.querySelectorAll(".language-mermaid");
+
+            // Rename the class to "mermaid"
+            mermaidElements.forEach(function (element) {
+            element.classList.remove("language-mermaid");
+            element.classList.add("mermaid");
+            });
+
+            console.log("Before initialize");
+            mermaid.initialize({ startOnLoad: true });
+            console.log("After initialize");
+
         });
       </script>
   </head>
