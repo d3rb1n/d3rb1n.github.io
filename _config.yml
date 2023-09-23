@@ -135,10 +135,6 @@ collections:
     panel_includes:
     - toc
     extensions: [md, txt, log, hash, png]
-  tags:
-    output: true
-  categories:
-    output: true
 
 search:
   collections:
@@ -214,7 +210,7 @@ include:
   - _tabs/images/
 
 jekyll-archives:
-  enabled: [categories, tags]
+  enabled: [categories, tags, tabs, writeups]
   layouts:
     category: category
     tag: tag
