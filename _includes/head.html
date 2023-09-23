@@ -103,14 +103,11 @@
 
             // Rename the class to "mermaid"
             mermaidElements.forEach(function (element) {
-            element.classList.remove("language-mermaid");
-            element.classList.add("mermaid");
+                element.classList.remove("language-mermaid");
+                element.classList.add("mermaid");
             });
 
-            console.log("Before initialize");
             mermaid.initialize({ startOnLoad: true });
-            console.log("After initialize");
-
         });
       </script>
   </head>
