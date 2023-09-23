@@ -97,11 +97,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-
-            // Find all elements with the class "language-mermaid"
             const mermaidElements = document.querySelectorAll(".language-mermaid");
-
-            // Rename the class to "mermaid"
             mermaidElements.forEach(function (element) {
                 element.classList.remove("language-mermaid");
                 element.classList.add("mermaid");
