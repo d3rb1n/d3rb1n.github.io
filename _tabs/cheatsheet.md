@@ -5,6 +5,10 @@ panel_includes:
   - toc
 icon: fas fa-note-sticky
 order: 4
+title: "Cheatsheet"
+subtitle: "Quick reference for commonly-used commands, and how to use them."
+tags: [ "phases", "nmap", "gobuster", "nikto", "hydra", "wordlist", "searchsploit", "nc", "netcat", "shell", "fragile", "upgrade", "pty", "script" ]
+categories: [ "cheatsheets", "reference" ]
 ---
 
 This is a cheatsheet, or quick reference for those commands and concepts that you quickly look to lookup. This page is broken up into:

@@ -3,6 +3,7 @@ title: "THM:bruteit"
 subtitle: "TryHackMe CTF room: https://tryhackme.com/room/bruteit"
 categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,hydra,apache,ubuntu,john,ssh2john,privesc]
+date: "2023-01-11 23:11:00"
 ---
 # THM:bruteit
 

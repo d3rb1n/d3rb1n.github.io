@@ -1,7 +1,3 @@
-<!--
-  Jekyll Simple Search loader
-  See: <https://github.com/christian-fei/Simple-Jekyll-Search>
--->
 {% include lang.html %}
 
 {% capture result_elem %}
@@ -20,131 +16,60 @@
 </article>
 {% endcapture %}
 
-
-
-
 {% capture not_found %}<p class="mt-5">{{ site.data.locales[include.lang].search.no_results }}</p>{% endcapture %}
 
-<!-- <script>
-  /* Note: dependent library will be loaded in `js-selector.html` */
-  SimpleJekyllSearch({
-    searchInput: document.getElementById('search-input'),
-    resultsContainer: document.getElementById('search-results'),
-    json: "{{ '/assets/js/data/search.json' | relative_url }}",
-    searchResultTemplate: '{{ result_elem | strip_newlines }}',
-    noResultsText: 'No items found',
-    customSearch2: function(query, record) {
-      console.log('Query:', query);
-      query = query.toLowerCase();
-      console.log('Lowercased Query:', query);
-      let searchText = (record.title + ' ' + record.subtitle + ' ' + record.content + ' ' + record.tags.join(' ') + ' ' + record.categories.join(' ')).toLowerCase();
-      console.log('Search Text:', searchText);
-  
-      // Split the searchText into individual words
-      let words = searchText.split(' ');
-      console.log('Split Words:', words);
-  
-      // Check if any of the words partially match the query
-      let result = words.some(word => {
-        console.log('Checking Word:', word);
-        let includesQuery = word.includes(query);
-        console.log('Includes Query?', includesQuery);
-        return includesQuery;
-      });
-  
-      console.log('Result:', result);
-      
-      return result;
-    },
-    templateMiddleware: function (prop, value, template) {
-      if (prop === 'categories') {
-        if (value === '' || value === null) {
-          return ``;
-        } else if (Array.isArray(value)) {
-          const categoryHtml = value.map(category => `<a href="/category/${category}" title="Category: ${category}" style="font-size: 1em;" >${category}</a>`).join(', ');
-          return `<div title="Categories"><i class="fa fa-folder fa-fw"></i>${categoryHtml}</div>`;
-        } else {
-          return `<div title="Categories"><i class="far fa-folder fa-fw"></i> <a href="/category/${value}" style="font-size: 1em;" >${value}</a></div>`;
-        }
-      }
-
-      if (prop === 'tags') {
-        if (value === '' || value === null) {
-          return ``;
-        } else if (Array.isArray(value)) {
-          const tagHtml = value.map(tag => `<a href="/tags/${tag}" title="Tag: ${tag}" style="font-size: 1em;" >${tag}</a>`).join(', ');
-          return `<div title="Tags"><i class="fa fa-tag fa-fw"></i> ${tagHtml}</div>`;
-        } else {
-          return `<div title="Tags"><i class="fa fa-tag fa-fw"></i><a href="/tags/${value}" style="font-size: 1em;" >${value}</a></div>`;
-        }
-      }
-    }
-  });
-</script> -->
-
 <script>
-// ...
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Load the JSON data file
-  fetch('/assets/js/data/search.json')
-    .then(response => response.json())
-    .then(data => {
-      const searchInput = document.getElementById('search-input');
-      const resultsContainer = document.getElementById('results-container');
+  document.addEventListener('DOMContentLoaded', function () {
 
-      // Function to perform the search
-      function performSearch(query) {
-        console.log('Performing search with query:', query);
-        query = query.toLowerCase();
-        const results = [];
+    fetch('/assets/js/data/search.json')
+      .then(response => response.json())
+      .then(data => {
+        const searchInput = document.getElementById('search-input');
+        const resultsContainer = document.getElementById('results-container');
 
-        // Loop through the data and check for matches
-        data.forEach(item => {
-          const searchableFields = [
-            item.title,
-            item.subtitle,
-            item.content,
-            ...item.tags,
-            ...item.categories
-          ];
+        function performSearch(query) {
+          console.log('Performing search with query:', query);
+          query = query.toLowerCase();
+          const results = [];
 
-          const match = searchableFields.some(field => field.toLowerCase().includes(query));
+          data.forEach(item => {
+            const searchableFields = [
+              item.title,
+              item.subtitle,
+              item.content,
+              ...item.tags,
+              ...item.categories
+            ];
 
-          if (match) {
-            results.push(item);
-          }
-        });
+            const match = searchableFields.some(field => (field ? field.toLowerCase().includes(query) : false));
 
-        console.log('Search results:', results);
+            if (match) {
+              results.push(item);
+            }
+          });
 
-        displayResults(results);
+          console.log('Search results:', results);
 
-        const stateObj = { search: query };
-        const pageTitle = `Search Results for ${query}`;
-        const url = `/search?q=${query}`;
-        window.history.pushState(stateObj, pageTitle, url);
-      }
+          displayResults(results);
 
-      // Function to display search results
-      function displayResults(results) {
-        resultsContainer.innerHTML = '';
+        }
 
-        if (results.length === 0) {
-          resultsContainer.innerHTML = '<li>No results found</li>';
-        } else {
-          results.forEach(result => {
-            const resultDiv = document.createElement('div');
+        function displayResults(results) {
+          resultsContainer.innerHTML = '';
 
-            resultDiv.classList.add("col-md-6");
+          if (results.length === 0) {
+            resultsContainer.innerHTML = '<li>No results found</li>';
+          } else {
+            results.forEach(result => {
+              const resultDiv = document.createElement('div');
 
-            // Format categories and tags
-            const formattedCategories = result.categories.map(category => `<a href="/category/${category}" title="Category: ${category}" style="font-size: 1em;">${category}</a>`).join(', ');
-            const formattedTags = result.tags.map(tag => `<a href="/tags/${tag}" title="Tag: ${tag}" style="font-size: 1em;">${tag}</a>`).join(', ');
+              resultDiv.classList.add("col-md-6");
 
+              const formattedCategories = result.categories.map(category => `${category}`).join(', ');
+              const formattedTags = result.tags.map(tag => `${tag}`).join(', ');
 
-            // Populate the div with data from the result object
-            resultDiv.innerHTML = `
+              resultDiv.innerHTML = `
               <article class="px-1 px-sm-2 px-lg-4 px-xl-3 mx-1 mx-sm-2 mx-lg-4 mx-xl-3"
                 style="border: 1px solid darkslategrey; border-radius: 5px; -moz-border-radius: 5px; margin: 3px;">
                 <header>
@@ -159,21 +84,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 </header>
               </article>
             `;
-          
-            // Append the result to the results container
-            resultsContainer.appendChild(resultDiv);
-          });
-        }
-      }
 
-      // Event listener for the search input (input event)
-      searchInput.addEventListener('input', function () {
-        performSearch(this.value);
+              resultsContainer.appendChild(resultDiv);
+            });
+          }
+        }
+
+        searchInput.addEventListener('input', function () {
+          performSearch(this.value);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading data:', error);
       });
-    })
-    .catch(error => {
-      console.error('Error loading data:', error);
-    });
-});
+  });
 
 </script>
