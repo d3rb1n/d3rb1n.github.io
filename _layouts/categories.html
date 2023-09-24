@@ -17,7 +17,7 @@ layout: page
     {% for doc in collection.docs %}
       {% for category in doc.categories %}
         {% unless sort_categories contains category %}
-          {% assign sort_categories = sort_categories | toLowerCase: | push: category %}
+          {% assign sort_categories = sort_categories | toLowerCase | push: category %}
         {% endunless %}
       {% endfor %}
     {% endfor %}
@@ -25,7 +25,7 @@ layout: page
 {% endfor %}
 
 {% for category in sort_categories %}
-  {% assign category_name = category | toLowerCase: %}
+  {% assign category_name = category | toLowerCase %}
   {% assign posts_of_category = '' | split: '' %}
 
   {% for collection in site.collections %}
@@ -48,8 +48,8 @@ layout: page
         <span class="ms-2">
           <i class="far fa-folder fa-fw"></i>
 
-          {% capture _category_url %}/categories/{{ category_name | slugify | url_encode }}/{% endcapture %}
-          <a href="{{ _category_url | relative_url }}" class="mx-2">{{ category_name | toLowerCase: }}</a>
+          {% capture _category_url %}/category/{{ category_name | slugify | url_encode }}/{% endcapture %}
+          <a href="{{ _category_url | relative_url }}" class="mx-2">{{ category_name | toLowerCase }}</a>
 
           <!-- content count -->
           <span class="text-muted small font-weight-light">

@@ -15,7 +15,7 @@ layout: page
           {% assign tags = tags | push: tag %}
         {% endunless %}
         {% assign tagSlug = tag | slugify | downcase %}
-        {% assign currentCount = tagCounts | split: ";" | where: tagSlug, empty | split: ":" | last: | default: 0 %}
+        {% assign currentCount = tagCounts | split: ";" | where: tagSlug, empty | split: ":" | last | default: 0 %}
         {% assign updatedCount = currentCount | plus: 1 %}
         {% assign tagCounts = tagCounts | append: tagSlug | append: ":" | append: updatedCount | append: ";" %}
       {% endfor %}
