@@ -60,11 +60,13 @@ The `nmap` command is used to scan for open ports on a target machine.
 > **Context:** This tool is run during the recon phase when you have access to a target host, and want to see what services are running on it.
 {: .prompt-tip }
 
-TBD
+TEST - Before block
 
 ```bash
 nmap -sCV 10.10.10.10
 ```
+
+TEST - After block
 
 ### Command: `gobuster`
 
