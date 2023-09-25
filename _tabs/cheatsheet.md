@@ -61,7 +61,7 @@ The `nmap` command is used to scan for open ports on a target machine.
 {: .prompt-tip }
 
 ```bash
-nmap -sCV $TARGET
+nmap -sCV 10.10.10.10
 ```
 
 ### Command: `gobuster`
@@ -73,7 +73,7 @@ The `gobuster` command is used to enumerate and discover hidden files and direct
 
 ```bash
 gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt \
-    -u http://$TARGET
+    -u http://10.10.10.10
 ```
 
 ### Command: `nikto`
@@ -84,7 +84,7 @@ The `nikto` command is a vulnerability scanner that is run against a web server.
 {: .prompt-tip }
 
 ```bash
-nikto -h $TARGET
+nikto -h 10.10.10.10
 ```
 
 ### Command: `hydra`
@@ -100,7 +100,7 @@ Note the lowercase `-l` for a fixed username and an uppercase `-P` which points 
 
 ```bash
 hydra -l jdoe -P /usr/share/wordlists/rockyou.txt \
-    ssh://$TARGET
+    ssh://10.10.10.10
 ```
 
 #### OPTION 2: SSH with username wordlist and fixed password
@@ -109,7 +109,7 @@ Note the uppercase `-L` where a wordlist will be used for the username and the l
 
 ```bash
 hydra -L ./usernames.txt -p admin \
-    ssh://$TARGET
+    ssh://10.10.10.10
 ```
 
 #### OPTION 3: Webform with fixed username and password wordlist
@@ -118,7 +118,7 @@ Note the lowercase `-l` for a fixed username and an uppercase `-P` which points 
 
 ```bash
 hydra -l jdoe -P /usr/share/wordlists/rockyou.txt \
-    $TARGET http-post-form \
+    10.10.10.10 http-post-form \
     "/login.php:username=^USER^&password=^PASS^&sub=Login:F=Invalid username or password."
 ```
 
@@ -128,7 +128,7 @@ Note the uppercase `-L` where a wordlist will be used for the username and the l
 
 ```bash
 hydra -L ./usernames.txt -p admin \
-    $TARGET http-post-form \
+    10.10.10.10 http-post-form \
     "/login.php:username=^USER^&password=^PASS^&sub=Login:F=Invalid username or password."
 ```
 

