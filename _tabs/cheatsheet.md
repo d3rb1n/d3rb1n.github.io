@@ -1,5 +1,4 @@
 ---
-layout: default
 icon: fas fa-note-sticky
 order: 4
 title: "Cheatsheet"
