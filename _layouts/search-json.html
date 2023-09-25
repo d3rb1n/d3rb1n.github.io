@@ -5,6 +5,7 @@ swcache: false
 [
   {% assign search_items = "" %}
   {% for post in site.posts %}
+  {% if post.exclude-from-search != true %}
     {% assign post_title = post.title | jsonify %}
     {% assign post_subtitle = post.subtitle | jsonify %}
     {% assign post_url = post.url | relative_url | jsonify %}
@@ -34,12 +35,13 @@ swcache: false
       
       {% assign search_items = search_items | append: post_json %}
     {% endif %}
+    {% endif %}
   {% endfor %}
   
   {% for collection in site.collections %}
     {% if collection.label == "writeups" or collection.label == "tabs"  %}
       {% for doc in collection.docs %}
-        {% if doc.data.searchable != false %}
+        {% if doc.data.searchable != false and doc.exclude-from-search != true %}
           {% assign doc_title = doc.title | escape | jsonify %}
           {% assign doc_subtitle = doc.subtitle | escape | jsonify %}
           {% assign doc_url = doc.url | relative_url | jsonify %}

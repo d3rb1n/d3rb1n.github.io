@@ -1,5 +1,67 @@
 ---
-layout: home
+layout: default
 # Index page
+exclude-from-search: true
 ---
-test
+
+<h1>The Writeups and References</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-12">
+            <fieldset class="flex-fieldset" style="box-shadow: 5px 5px 10px 0px rgba(127, 127, 127, 0.3);
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        background-color:#555555;
+        padding: 10px;">
+                <legend><i class="fas fa-book-open"></i>&nbsp;Write-Ups</legend>
+                <p>
+                    This section is for Capture The Flag (CTF) write-ups from various websites. Each room is processed in a folder on this website, so that the various logs and found-files can be stored. An effort is made to not expose the answers to the room, but sometimes valuable information does slip through.
+                </p>
+                <p><a href="/write-ups/" class="btn btn-primary">Get Started...</a>
+                </p>
+            </fieldset>
+        </div>
+        <div class="col-sm-6 col-12">
+            <fieldset class="flex-fieldset" style="box-shadow: 5px 5px 10px 0px rgba(127, 127, 127, 0.3);
+        border-radius: 5px;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        background-color:#555555;
+        padding: 10px;">
+                <legend><i class="fas fa-note-sticky"></i>&nbsp;Cheatsheet</legend>
+                <p>
+                    The Cheatshee is one file (which is searchable) for the common tools, command-line syntax, and conceptual information needed for Capture The Flags and bug hunting.
+                </p>
+                <p><a href="/cheatsheet/" class="btn btn-primary">Get Started...</a>
+                </p>
+            </fieldset>
+        </div>
+        <div class="col-12"">
+        <fieldset style=" box-shadow: 5px 5px 10px 0px rgba(127, 127, 127, 0.3); border-radius: 5px;
+            -moz-border-radius: 5px; -webkit-border-radius: 5px; background-color:#555555; padding: 10px;">
+            <legend><i class="fas fa-search"></i>&nbsp;Browse &amp; Search</legend>
+            <p>
+                This entire website is indexed. So, you can browse the <a href="">writeups</a>, or the <a href="">cheatsheet</a>. But you can also use the search in the top-right of every page and search for any keyword or partial phrase. It does a complete match on what you type, as opposed to splitting up words. For this kind of content, this approach was found to be better.
+            </p>
+            <p>Get started by searching in the top-right of the page, or using the navigation below.</p>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+
+
+<style>
+    .col-12 {
+        margin-bottom: 20px;
+        /* Add margin between stacked fieldsets in mobile view */
+    }
+    .flex-fieldset {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%; /* Make fieldset take up full height of its parent */
+      }
+</style>

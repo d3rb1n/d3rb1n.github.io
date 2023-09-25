@@ -2,7 +2,11 @@
 # the default layout is 'page'
 icon: fas fa-book-open
 order: 5
+layout: default
+exclude-from-search: true
 ---
+
+<h1><i class="fas fa-book-open"></i>&nbsp;Write-Ups</h1>
 
 # TryHackMe Write-ups
 

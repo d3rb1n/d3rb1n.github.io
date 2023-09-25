@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 refactor: true
 panel_includes:
   - toc
@@ -10,6 +10,8 @@ subtitle: "Quick reference for commonly-used commands, and how to use them."
 tags: [ "phases", "nmap", "gobuster", "nikto", "hydra", "wordlist", "searchsploit", "nc", "netcat", "shell", "fragile", "upgrade", "pty", "script" ]
 categories: [ "cheatsheets", "reference" ]
 ---
+
+<h1><i class="fas fa-note-sticky"></i>&nbsp;Cheatsheet</h1>
 
 This is a cheatsheet, or quick reference for those commands and concepts that you quickly look to lookup. This page is broken up into:
 
