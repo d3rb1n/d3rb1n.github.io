@@ -1,4 +1,7 @@
 ---
+layout: page-no-title
+panel_includes:
+  - toc
 icon: fas fa-note-sticky
 order: 4
 title: "Cheatsheet"
