@@ -62,7 +62,7 @@ The `nmap` command is used to scan for open ports on a target machine.
 
 TEST - Before block
 
-```bash
+```
 nmap -sCV 10.10.10.10
 ```
 
