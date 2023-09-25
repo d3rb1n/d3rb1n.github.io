@@ -52,8 +52,8 @@ collections:
     sort_by: order
     panel_includes:
     - toc
-  writeups:
-    directory: _writeups/*/*
+  write-ups:
+    directory: _write-ups/*/*
     output: true
     sort_by: order
     panel_includes:
@@ -64,7 +64,7 @@ search:
   collections:
     - posts
     - pages
-    - writeups
+    - write-ups
     - tabs
 
 
@@ -91,7 +91,7 @@ defaults:
       permalink: /:title/
   - scope:
       path: "" # An empty string here means all files in the project
-      type: writeups
+      type: write-ups
     values:
       layout: page
       comments: true # Enable comments in posts.

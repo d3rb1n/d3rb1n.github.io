@@ -39,7 +39,7 @@ swcache: false
   {% endfor %}
   
   {% for collection in site.collections %}
-    {% if collection.label == "writeups" or collection.label == "tabs"  %}
+    {% if collection.label == "write-ups" or collection.label == "tabs"  %}
       {% for doc in collection.docs %}
         {% if doc.data.searchable != false and doc.exclude-from-search != true %}
           {% assign doc_title = doc.title | escape | jsonify %}
