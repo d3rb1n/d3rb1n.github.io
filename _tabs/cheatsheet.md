@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page-no-title
 panel_includes:
   - toc
 icon: fas fa-note-sticky
