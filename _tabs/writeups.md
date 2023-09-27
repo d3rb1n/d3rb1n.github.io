@@ -34,3 +34,4 @@ Below are the write-ups of the key details of each TryHackMe room, in case you g
 ## DIfficulty: Medium
 
 1. **[mrrobot](thm/mrrobot/index.html)** <span class="badge bg-success">Complete</span> - from [https://tryhackme.com/room/mrrobot](https://tryhackme.com/room/mrrobot)
+1. **[dogcat](thm/dogcat/index.html)** <span class="badge bg-info text-dark">Pending</span> - from [https://tryhackme.com/room/dogcat](https://tryhackme.com/room/dogcat)
