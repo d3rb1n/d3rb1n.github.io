@@ -25,6 +25,7 @@ This is a cheatsheet, or quick reference for those commands and concepts that yo
     - [OPTION 2: SSH with username wordlist and fixed password](#option-2-ssh-with-username-wordlist-and-fixed-password)
     - [OPTION 3: Webform with fixed username and password wordlist](#option-3-webform-with-fixed-username-and-password-wordlist)
     - [OPTION 4: Webform with username wordlist and fixed password](#option-4-webform-with-username-wordlist-and-fixed-password)
+    - [OPTION 5: Use a `username:password` formatted file for Credential Stuffin](#option-5-use-a-usernamepassword-formatted-file-for-credential-stuffin)
   - [Command: `searchsploit`](#command-searchsploit)
   - [Command `nc` - NetCat for listening/receiving](#command-nc---netcat-for-listeningreceiving)
     - [Listen on Port 9000](#listen-on-port-9000)
@@ -131,6 +132,22 @@ Note the uppercase `-L` where a wordlist will be used for the username and the l
 hydra -L ./usernames.txt -p admin \
     10.10.10.10 http-post-form \
     "/login.php:username=^USER^&password=^PASS^&sub=Login:F=Invalid username or password."
+```
+
+#### OPTION 5: Use a `username:password` formatted file for Credential Stuffin
+
+If you have a file in this format:
+
+```text
+jdoe:Password123
+vkrishna:SuperPazz
+susanb:august2023
+```
+
+Then you can try those `username:password` combinations against a service. Here is an example of how to do that against SSH with the `-C` argument that knows how to read this file format:
+
+```bash
+hydra -C ./accounts.txt -vV 10.10.10.10 ssh
 ```
 
 ### Command: `searchsploit`

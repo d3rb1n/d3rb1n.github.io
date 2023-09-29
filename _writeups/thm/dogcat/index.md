@@ -3,6 +3,7 @@ title: "dogcat"
 subtitle: "CTF room: https://tryhackme.com/room/dogcat"
 category: CTF, Medium
 tags: ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,gpg2john,linpeas,privesc,cron
+refactor: true
 panel_includes:
   - toc
 ---

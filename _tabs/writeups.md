@@ -30,6 +30,7 @@ Below are the write-ups of the key details of each TryHackMe room, in case you g
 1. **[wgetctf](thm/wgetctf/index.html)** <span class="badge bg-success">Complete</span> - from [https://tryhackme.com/room/wgetctf](https://tryhackme.com/room/wgetctf)
 1. **[chillhack](thm/chillhack/index.html)** <span class="badge bg-success">Complete</span> - from [https://tryhackme.com/room/chillhack](https://tryhackme.com/room/chillhack)
 1. **[bruteit](thm/bruteit/index.html)** <span class="badge bg-success">Complete</span> - from [https://tryhackme.com/room/bruteit](https://tryhackme.com/room/bruteit)
+1. **[fowsniff-ctf](thm/fowsniff-ctf/index.html)** <span class="badge bg-success">Complete</span> - from [https://tryhackme.com/room/ctf](https://tryhackme.com/room/ctf)
 
 ## DIfficulty: Medium
 
