@@ -1,7 +1,5 @@
 ---
-layout: post
-panel_includes:
-  - toc
+layout: page
 icon: fas fa-note-sticky
 order: 4
 title: "Cheatsheet"
