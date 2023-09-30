@@ -9,7 +9,7 @@ panel_includes:
 ---
 # dogcat
 
-URL: [https://tryhackme.com/room/dogcat](https://tryhackme.com/room/dogcat) [Medium]
+URL: <https://tryhackme.com/room/dogcat> &nbsp;<span class="badge rounded-pill bg-warning text-dark" title="This is a Medium difficulty room."><i class="fa fa-wrench"></i>&nbsp;Medium</span>
 
 ## PHASE 1: Reconnaissance
 
@@ -239,7 +239,7 @@ Hopefully you are using some kind of editor (like VSCode) to stage these things,
 
 Alas, I didn't have much luck with this approach. The answer is probably to escape more of the special characters, but I decided to just move on to another technique.
 
-#### Option 2: Directly downloading a reverse shell, as our `User-Agent`
+### Option 2: Directly downloading a reverse shell, as our `User-Agent`
 
 The kill chain on this one is a little more straight-forward. Basically:
 

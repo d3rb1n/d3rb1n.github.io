@@ -1,4 +1,5 @@
 ---
+layout: post
 panel_includes:
   - toc
 icon: fas fa-note-sticky

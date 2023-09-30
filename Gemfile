@@ -30,3 +30,5 @@ end
 group :jekyll_plugins do
   gem 'jekyll' # Add other Jekyll-related gems if needed
 end
+
+gem 'jekyll_bootstrap5_tabs'
