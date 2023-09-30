@@ -6,7 +6,7 @@ tags: ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apach
 ---
 # fowsniff-ctf
 
-URL: [https://tryhackme.com/room/ctf](https://tryhackme.com/room/ctf) [Easy]
+URL: [https://tryhackme.com/room/ctf](https://tryhackme.com/room/ctf) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
 ## PHASE 1: Reconnaissance
 

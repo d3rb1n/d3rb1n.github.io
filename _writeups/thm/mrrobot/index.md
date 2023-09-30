@@ -6,7 +6,7 @@ tags: [ctf,nmap,gobuster,apache,ubuntu,john,hydra,privesc]
 ---
 # THM:mrrobot
 
-URL: [https://tryhackme.com/room/mrrobot](https://tryhackme.com/room/mrrobot) [Medium]
+URL: [https://tryhackme.com/room/mrrobot](https://tryhackme.com/room/mrrobot) &nbsp;<span class="badge rounded-pill bg-warning text-dark" title="This is a Medium difficulty room."><i class="fa fa-wrench"></i>&nbsp;Medium</span>
 
 ## Reconnaissance
 
