@@ -14,29 +14,8 @@ categories: [ "cheatsheets", "reference" ]
   <i class="fas fa-note-sticky"></i>&nbsp;Cheatsheet
 </h1>
 
-This is a cheatsheet, or quick reference for those commands and concepts that you quickly look to lookup. This page is broken up into:
+This is a cheatsheet, or quick reference for those commands and concepts that you quickly need to lookup.
 
-- [Phases of Hacking](#phases-of-hacking)
-- [Commands](#commands)
-  - [Command: `nmap`](#command-nmap)
-  - [Command: `gobuster`](#command-gobuster)
-  - [Command: `nikto`](#command-nikto)
-  - [Command: `hydra`](#command-hydra)
-    - [OPTION 1. SSH with fixed username and password wordlist](#option-1-ssh-with-fixed-username-and-password-wordlist)
-    - [OPTION 2: SSH with username wordlist and fixed password](#option-2-ssh-with-username-wordlist-and-fixed-password)
-    - [OPTION 3: Webform with fixed username and password wordlist](#option-3-webform-with-fixed-username-and-password-wordlist)
-    - [OPTION 4: Webform with username wordlist and fixed password](#option-4-webform-with-username-wordlist-and-fixed-password)
-    - [OPTION 5: Use a `username:password` formatted file for Credential Stuffin](#option-5-use-a-usernamepassword-formatted-file-for-credential-stuffin)
-  - [Command: `searchsploit`](#command-searchsploit)
-  - [Command `nc` - NetCat for listening/receiving](#command-nc---netcat-for-listeningreceiving)
-    - [Listen on Port 9000](#listen-on-port-9000)
-    - [Quick-n-Dirty Port Scan](#quick-n-dirty-port-scan)
-    - [Send/Receive a File](#sendreceive-a-file)
-- [Concepts](#concepts)
-  - [Concept: Upgrading a fragile shell](#concept-upgrading-a-fragile-shell)
-    - [With Python `pty`](#with-python-pty)
-    - [With `script`](#with-script)
-  - [Concept: Seeing what commands current user can use as `sudo`](#concept-seeing-what-commands-current-user-can-use-as-sudo)
 
 ## Phases of Hacking
 
