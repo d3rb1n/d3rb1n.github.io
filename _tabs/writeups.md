@@ -43,7 +43,7 @@ Below are the write-ups of the key details of each TryHackMe room that was done.
 
 ## Difficult: <span class="badge rounded-pill bg-danger" title="This is a Hard difficulty room."><i class="fa fa-skull-crossbones"></i>&nbsp;Hard</span>
 
-TBD
+1. <span class="badge bg-success"><i class="fa fa-check-circle"></i>&nbsp;Complete</span>&nbsp; **[dailybugle](thm/dailybugle/index.html)** - from [https://tryhackme.com/room/dailybugle](https://tryhackme.com/room/dailybugle)
 
     {% endcapture %}
     {{ tab_content | markdownify }}
