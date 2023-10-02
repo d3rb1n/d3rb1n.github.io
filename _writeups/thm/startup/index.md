@@ -4,17 +4,17 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/startup"
 categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,ssh2john,linpeas,privesc,cron]
 ---
-# THM:startup
+# startup
 
-URL: [https://tryhackme.com/room/startup](https://tryhackme.com/room/startup) [Easy]
+URL: [https://tryhackme.com/room/startup](https://tryhackme.com/room/startup) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
 > We are Spice Hut, a new startup company that just made it big! We offer a variety of spices and club sandwiches (in case you get hungry), but that is not why you are here. To be truthful, we aren't sure if our developers know what they are doing and our security concerns are rising. We ask that you perform a thorough penetration test and try to own root. Good luck!
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -60,7 +60,7 @@ Nothing interesting found.
 
 Also see: [nikto.log](nikto.log)
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 ### Unprivileged Access
 
@@ -93,7 +93,7 @@ nc -lvnp 8080
 After a minute or so, you've got a prompt, and it's a root prompt!
 
 
-## Maintaining Access
+## PHASE 4: Maintaining Access
 
 To not have to deal with half-broken shells, I added my SSH public key to `/home/lennie/.ssh/authorized_keys` and set the permissions on that file to `chmod 600 ./authorized_keys`. That way, instead of working out of reverse shells with bad rendering, I could now just:
 
@@ -101,19 +101,19 @@ To not have to deal with half-broken shells, I added my SSH public key to `/home
 ssh lennie@x.x.x.x
 ```
 
-## Clearing Tracks
+## PHASE 5: Clearing Tracks
 
 This is a test machine. However, in a Red Team scenario, we could:
 
-### Delete relevant logs from `/var/log/` - although that might draw attention.
+### Delete relevant logs from `/var/log/` - although that might draw attention
 
 > `rm -Rf /var/log/*`
 
-### Search and replace our IP address in all logs via: 
+### Search and replace our IP address in all logs via
 
 > `find /var/log -name "*" -exec sed -i 's/10.10.2.14/127.0.0.1/g' {} \;`
 
-### Wipe bash history for any accounts we used via: 
+### Wipe bash history for any accounts we used via
 
 > `cat /dev/null > /root/.bash_history`
 >  

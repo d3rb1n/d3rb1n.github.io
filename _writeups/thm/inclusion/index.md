@@ -4,11 +4,11 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/inclusion"
 categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,lfi,local-file-inclusion]
 ---
-# THM:inclusion
+# inclusion
 
-URL: [https://tryhackme.com/room/inclusion](https://tryhackme.com/room/inclusion) [Easy]
+URL: [https://tryhackme.com/room/inclusion](https://tryhackme.com/room/inclusion) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
@@ -16,7 +16,7 @@ Description of the room:
 >  
 > If you have any kind of feedback please reach out to me on twitter at [0xmzfr](https://twitter.com/0xmzfr)
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -47,7 +47,7 @@ Interesting folders found:
 
 *See also: [gobuster.log](gobuster.log)*
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 What we discover is there is only one folder on this server (that is `/article`) and as a `name` argument, it seems to take a file name.
 
@@ -67,11 +67,11 @@ So, we go back, back, back up a few directories to see if we can get the web ser
 
 By using this technique, we were able to get a value username (`falconfeast`) and read the `user.txt` file, and also step into the `/root` folder to read the `root.txt` file. The contents of those files were the two flags for this room.
 
-## Maintaining Access
+## PHASE 4: Maintaining Access
 
 We never got direct access to this box, so no access to maintain.
 
-## Clearing Tracks
+## PHASE 5: Clearing Tracks
 
 We never had direct access. Nothing to do.
 

@@ -4,17 +4,17 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/cowboyhacker"
 categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,ftp,hydra,apache,ubuntu,privesc,sudo]
 ---
-# THM:cowboyhacker
+# cowboyhacker
 
-URL: [https://tryhackme.com/room/cowboyhacker](https://tryhackme.com/room/cowboyhacker) [Easy]
+URL: [https://tryhackme.com/room/cowboyhacker](https://tryhackme.com/room/cowboyhacker) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
 > You were boasting on and on about your elite hacker skills in the bar and a few Bounty Hunters decided they'd take you up on claims! Prove your status is more than just a few glasses at the bar. I sense bell peppers & beef in your future! 
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Scan: `nmap`
 
@@ -47,7 +47,7 @@ This resulted in two directories being found:
 
 *Also see: [gobuster.log](gobuster.log)*
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 
 ### FTP Service
@@ -93,7 +93,7 @@ With that username and password, we can SSH into the box:
 
 And we use the password `RedDr4gonSynd1cat3` found by hydra, above. We are now logged in as an **unprivileged account** and can retrieve the `~/user.txt` flag, the first flag for this room.
 
-## PE: Sudo Privileges
+### PE: Sudo Privileges
 
 Logged-in as user `lin`, we check to see if we have any `sudo` permission:
 
@@ -110,7 +110,7 @@ Using this technique, that means that as `tar` is running as root, we could coer
 You see an error message, but **it does dump you at a root prompt!** From here, one can `cat /root/root.txt` to complete the room. That is the second flag to capture for this room.
 
 
-## Maintaining Access
+## PHASE 4: Maintaining Access
 
 This is a test machine. However, in a Red Team scenario, we could:
 
@@ -118,19 +118,19 @@ This is a test machine. However, in a Red Team scenario, we could:
 * Create a privileged account that wouldn't draw attention (ex: `operations`).
 * Install some other backdoor or service.
 
-## Clearing Tracks
+## PHASE 5: Clearing Tracks
 
 This is a test machine. However, in a Red Team scenario, we could:
 
-### Delete relevant logs from `/var/log/` - although that might draw attention.
+### Delete relevant logs from `/var/log/` - although that might draw attention
 
 > `rm -Rf /var/log/*`
 
-### Search and replace our IP address in all logs via: 
+### Search and replace our IP address in all logs via
 
 > `find /var/log -name "*" -exec sed -i 's/10.10.2.14/127.0.0.1/g' {} \;`
 
-### Wipe bash history for any accounts we used via: 
+### Wipe bash history for any accounts we used via
 
 > `cat /dev/null > /root/.bash_history`
 >  

@@ -4,17 +4,17 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/agentsudoctf"
 category: "ctf"
 tags: [ctf, nmap, nikto, gobuster, dirbuster, steganography, steghide, binwalk, john, zip2john, apache, ubuntu, CVE-2019–14287]
 ---
-# THM:Agent Sudo
+# agentsudoctf
 
-URL: [https://tryhackme.com/room/agentsudoctf](https://tryhackme.com/room/agentsudoctf) [Easy]
+URL: [https://tryhackme.com/room/agentsudoctf](https://tryhackme.com/room/agentsudoctf) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
 > You found a secret server located under the deep sea. Your task is to hack inside the server and reveal the truth.
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -61,7 +61,7 @@ Interesting info found:
 
 *Also see: [nikto.log](nikto.log)*
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 There isn't anything too interesting from scanning. We navigate to the web server running on this server and see:
 
@@ -224,30 +224,30 @@ sudo -u#-1 /bin/bash
 ```
 
 
-## Maintaining Access
+## PHASE 4: Maintaining Access
 
-TBD
+This is a test/CTF machine, so this is out of scope. However, in a Red Team scenario, we could:
 
-## Clearing Tracks
+- Add SSH key to `/root/.ssh/authorized_keys`
+- Create a privileged account that wouldn’t draw attention (ex: `operations`) or an unprivileged account and give it `sudo` access via group or directly in the `/etc/sudoers` file.
+- Install some other backdoor or service.
+
+## PHASE 5: Clearing Tracks
 
 This is a test machine. However, in a Red Team scenario, we could:
 
-### Delete relevant logs from `/var/log/` - although that might draw attention.
+### Delete relevant logs from `/var/log/` - although that might draw attention
 
 > `rm -Rf /var/log/*`
 
-### Search and replace our IP address in all logs via: 
+### Search and replace our IP address in all logs via
 
 > `find /var/log -name "*" -exec sed -i 's/10.10.2.14/127.0.0.1/g' {} \;`
 
-### Wipe bash history for any accounts we used via: 
+### Wipe bash history for any accounts we used via
 
 > `cat /dev/null > /root/.bash_history`
 >  
 > `cat /dev/null > /home/kathy/.bash_history`
 >  
 > `cat /dev/null > /home/sam/.bash_history`
-
-## Summary
-
-Completed: [<kbd>CTRL</kbd>+<kbd>SHFT</kbd>+<kbd>I</kbd>]

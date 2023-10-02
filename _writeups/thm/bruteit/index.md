@@ -5,17 +5,17 @@ categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,hydra,apache,ubuntu,john,ssh2john,privesc]
 date: "2023-01-11 23:11:00"
 ---
-# THM:bruteit
+# bruteit
 
-URL: [https://tryhackme.com/room/bruteit](https://tryhackme.com/room/bruteit) [Easy]
+URL: [https://tryhackme.com/room/bruteit](https://tryhackme.com/room/bruteit) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
-Description of the room: 
+Description of the room:
 
 > Learn how to brute, hash cracking and escalate privileges in this box!
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -162,7 +162,7 @@ Last login: Wed Sep 30 14:06:18 2020 from 192.168.1.106
 john@bruteit:~$
 ```
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 We investigated various avenues but ultimately SSH'ing in as `john` with the `id_rsa` SSH key, and the password for that file discovered by John the Ripper was the way in.
 
@@ -172,7 +172,7 @@ Now that we're SSH'ed in as `john` we can see the `user.txt` flag needed for the
 
 It we run a `sudo -l`, we can see we can run `cat` as `sudo`!
 
-## Privilege Escalation
+### Privilege Escalation
 
 When we run a `sudo -l`, we see:
 

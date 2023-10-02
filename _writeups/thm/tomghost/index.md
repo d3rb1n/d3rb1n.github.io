@@ -4,17 +4,17 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/tomghost"
 categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,gpg2john,linpeas,privesc,cron]
 ---
-# THM:tomghost
+# tomghost
 
-URL: [https://tryhackme.com/room/tomghost](https://tryhackme.com/room/tomghost) [Easy]
+URL: [https://tryhackme.com/room/tomghost](https://tryhackme.com/room/tomghost) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
 > Identify recent vulnerabilities to try exploit the system or read files that you should not have access to.
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -115,7 +115,7 @@ Similar situation with `gobuster`, Nikto couldn't connect.
 
 Also see: [nikto-8080.log](nikto-8080.log) / [nikto-8009.log](nikto-8009.log)
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 I consulted [this writeup](https://medium.com/@sushantkamble/apache-ghostcat-cve-2020-1938-explanation-and-walkthrough-23a9a1ae4a23) which explains that "Ghostcat" (the name of the room) is the name of a vulnerability in Apache Jserv Protocol (AJP) that is running on port 8009.
 
@@ -132,7 +132,7 @@ That then shows you a plausible username:password combination. When you try that
 > ***Note:** Looking around there is a `merlin` folder until `/home/` with a readable folder structure. Not writable though. Also note that not much came up in linpeas either.*
 
 
-## Privilege Escalation
+### Privilege Escalation
 
 This is somewhat tedious to put together. The kill-chain is:
 
@@ -152,8 +152,15 @@ sudo zip archive ./user.txt -T --unzip-command="sh -c /bin/bash"
 
 We are now running as root and can get our final flag from the `/root/` folder.
 
+## PHASE 4: Maintaining Access
 
-## Clearing Tracks
+This is a test/CTF machine, so this is out of scope. However, in a Red Team scenario, we could:
+
+- Add SSH key to `/root/.ssh/authorized_keys`
+- Create a privileged account that wouldn’t draw attention (ex: `operations`) or an unprivileged account and give it `sudo` access via group or directly in the `/etc/sudoers` file.
+- Install some other backdoor or service.
+
+## PHASE 5: Clearing Tracks
 
 This is a test machine. However, in a Red Team scenario, we could:
 

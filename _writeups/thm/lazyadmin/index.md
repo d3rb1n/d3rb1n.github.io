@@ -5,17 +5,17 @@ categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,searchsploit,apache,ubuntu,mysql,linpeas,privesc,upload,file-upload-bypass,sudo,sweetrice,cms]
 page_excerpts: true
 ---
-# THM:lazyadmin
+# lazyadmin
 
-URL: [https://tryhackme.com/room/lazyadmin](https://tryhackme.com/room/lazyadmin) [Easy]
+URL: [https://tryhackme.com/room/lazyadmin](https://tryhackme.com/room/lazyadmin) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
 > Easy linux machine to practice your skills
 
-## Scanning
+## PHASE 2: Scanning
 
 ### Running: `nmap`
 
@@ -83,7 +83,7 @@ View each file to look for an exploit that seems interesting to you.
 
 *Also see: [searchsploit.log](searchsploit.log)*
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 One potential way into this server is via the exploit defined in `/usr/share/exploitdb/exploits/php/webapps/40718.txt`. This just states:
 
@@ -162,15 +162,15 @@ Then, run:
 
 And we get a bash prompt as root! You can get the TryHackMe flag from `/root/`.
 
-## More to do?
+### More to do?
 
 There are many other options with this box, so it is a good box if you wanted to practice your skills in a few areas. Also, in the SweetRice dashboard where we're logged in as `manager`, on the Settings page (http://10.10.223.52/content/as/?type=setting) it has the MySQL account and password. So for practice, it might be interesting to see what you can do with viewing or exfiltrating that MySQL data.
 
-## Maintaining Access
+## PHASE 4: Maintaining Access
 
 None needed.
 
-## Clearing Tracks
+## PHASE 5: Clearing Tracks
 
 This is a test machine. However, in a Red Team scenario, we could:
 

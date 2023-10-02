@@ -4,17 +4,17 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/chillhack"
 categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,gpg2john,linpeas,privesc,cron]
 ---
-# THM:chillhack
+# chillhack
 
-URL: [https://tryhackme.com/room/chillhack](https://tryhackme.com/room/chillhack) [Easy]
+URL: [https://tryhackme.com/room/chillhack](https://tryhackme.com/room/chillhack) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
 > Easy level CTF.  Capture the flags and have fun!
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -96,7 +96,7 @@ Not much of anything interesting info found on `:80`:
 
 Also see: [nikto.log](nikto.log)
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 The most obvious place to start is in the `/secret/` folder via the web browser. This lets you run Linux commands, and it shows you the output. However, you quickly find out several commands are blocked and it shows you a "Are you a hacker?" message.
 
@@ -202,7 +202,7 @@ Where those contents would be your own public key from `~/.ssh/id_rsa.pub` on yo
 Finally, you can now `ssh apaar@<machine-ip>` and you should not be prompted for a password. You now have a proper SSH prompt running as `apaar`.
 
 
-## Privilege Escalation
+### Privilege Escalation
 
 This is a bit unrealistic and convoluted, but I suppose it is a good reinforcement of these skills that we learn! Here is the summary of the kill-chain to get privilege escalation:
 

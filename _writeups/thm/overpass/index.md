@@ -4,12 +4,12 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/overpass"
 categories: [ctf, thm]
 tags: [ctf,nmap,gobuster,dirbuster,session,broken-authentication,javascript,apache,ubuntu,john,ssh2john,linpeas,privesc,cron]
 ---
-# THM:overpass
+# overpass
 
-URL: [https://tryhackme.com/room/overpass](https://tryhackme.com/room/overpass) [Easy]
+URL: [https://tryhackme.com/room/overpass](https://tryhackme.com/room/overpass) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
@@ -23,7 +23,7 @@ Obviously a perfect commercial success!
 > *UPDATE: The code is now claimed.
 The machine was slightly modified on 2020/09/25. This was only to improve the performance of the machine. It does not affect the process.*
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -59,7 +59,7 @@ Interesting folders found:
 
 Also see: [gobuster.log](gobuster.log)
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 Started by looking at `/admin/` page to see if there was anything exploitable.
 
@@ -187,7 +187,7 @@ However, since there are variations of `nc` and some don't allow the `-e` argume
 Also see: [buildscript.sh](downloads/src/buildscript.sh)
 
 
-## Maintaining Access
+## PHASE 4: Maintaining Access
 
 This is a test machine. However, in a Red Team scenario, we could:
 
@@ -195,19 +195,19 @@ This is a test machine. However, in a Red Team scenario, we could:
 * Create a privileged account that wouldn't draw attention (ex: `operations`).
 * Install some other backdoor or service.
 
-## Clearing Tracks
+## PHASE 5: Clearing Tracks
 
 This is a test machine. However, in a Red Team scenario, we could:
 
-### Delete relevant logs from `/var/log/` - although that might draw attention.
+### Delete relevant logs from `/var/log/` - although that might draw attention
 
 > `rm -Rf /var/log/*`
 
-### Search and replace our IP address in all logs via: 
+### Search and replace our IP address in all logs via
 
 > `find /var/log -name "*" -exec sed -i 's/10.10.2.14/127.0.0.1/g' {}\;`
 
-### Wipe bash history for any accounts we used via: 
+### Wipe bash history for any accounts we used via
 
 > `cat /dev/null > /root/.bash_history`
 >  

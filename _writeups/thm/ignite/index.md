@@ -4,17 +4,17 @@ subtitle: "TryHackMe CTF room: https://tryhackme.com/room/ignite"
 categories: [ctf, thm]
 tags: [ctf,nmap,nikto,gobuster,dirbuster,searchsploit,apache,ubuntu,mysql,linpeas,privesc,upload,file-upload-bypass,sudo,fuel,cms]
 ---
-# THM:ignite
+# ignite
 
-URL: [https://tryhackme.com/room/ignite](https://tryhackme.com/room/ignite) [Easy]
+URL: [https://tryhackme.com/room/ignite](https://tryhackme.com/room/ignite) &nbsp;<span class="badge rounded-pill bg-success" title="This is an Easy difficulty room."><i class="fa fa-bolt"></i>&nbsp;Easy</span>
 
-## Reconnaissance
+## PHASE 1: Reconnaissance
 
 Description of the room:
 
 > A new start-up has a few issues with their web server.
 
-## Scanning
+## PHASE 2: Scanning & Enumeration
 
 ### Running: `nmap`
 
@@ -68,7 +68,7 @@ Interesting info found:
 
 Also see: [nikto.log](nikto.log)
 
-## Gaining Access
+## PHASE 3: Gaining Access
 
 Simply reading the main `/` page of the website, at the bottom, we see that this "Fuel CMS" isn't fully set up, so it **includes the default admin credentials to log in**. From the `/robots.txt`, it looks like the `/fuel/` folder is where the app lives - so we can go there to log in, as admin!
 
@@ -273,29 +273,29 @@ su
 
 Then use the password from that `database.php` above, and we have a root prompt. Go get your THM flag from `/root/root.txt`.
 
-## More Exploration...
+### More Exploration...
 
 It's not needed to complete this room, but for practice, you currently have a limited bash prompt, but you have root, plus you have the mySQL`root` credentials in: `/var/www/html/fuel/application/config/database.php`. It might be an interesting exercise to practice your Advanced Persistent Threat techniques to quietly gain your own access. 
 
 Also, it might be fun to get familiar with exploring mySQL from the command line, and exfiltrating data too. In this case, this is a pretty empty database, but it's a realistic environment to hone those skills.
 
-## Maintaining Access
+## PHASE 4: Maintaining Access
 
 None needed.
 
-## Clearing Tracks
+## PHASE 5: Clearing Tracks
 
 This is a test machine. However, in a Red Team scenario, we might:
 
-### Delete relevant logs from `/var/log/` - although that is loud, destructive, and might draw attention.
+### Delete relevant logs from `/var/log/` - although that is loud, destructive, and might draw attention
 
 > `rm -Rf /var/log/*`
 
-### Instead, consider doing a search and replace of our IP address in all logs via: 
+### Instead, consider doing a search and replace of our IP address in all logs via
 
 > `find /var/log -name "*" -exec sed -i 's/10.2.110.212/127.0.0.1/g' {} \;`
 
-### Wipe bash history for any accounts we used via: 
+### Wipe bash history for any accounts we used via
 
 > `cat /dev/null > /root/.bash_history`
 
