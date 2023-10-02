@@ -41,7 +41,7 @@ Below are the write-ups of the key details of each TryHackMe room that was done.
 1.  <span class="badge bg-success"><i class="fa fa-check-circle"></i>&nbsp;Complete</span>&nbsp; **[mrrobot](thm/mrrobot/index.html)** - from [https://tryhackme.com/room/mrrobot](https://tryhackme.com/room/mrrobot)
 1.  <span class="badge bg-success"><i class="fa fa-check-circle"></i>&nbsp;Complete</span>&nbsp; **[dogcat](thm/dogcat/index.html)** - from [https://tryhackme.com/room/dogcat](https://tryhackme.com/room/dogcat)
 
-## Difficult: <span class="badge rounded-pill bg-danger" title="This is a Hard difficulty room."><i class="fa fa-skull-crossbones"></i>&nbsp;Hard</span>
+## Difficulty: <span class="badge rounded-pill bg-danger" title="This is a Hard difficulty room."><i class="fa fa-skull-crossbones"></i>&nbsp;Hard</span>
 
 1. <span class="badge bg-success"><i class="fa fa-check-circle"></i>&nbsp;Complete</span>&nbsp; **[dailybugle](thm/dailybugle/index.html)** - from [https://tryhackme.com/room/dailybugle](https://tryhackme.com/room/dailybugle)
 
@@ -53,7 +53,7 @@ Below are the write-ups of the key details of each TryHackMe room that was done.
 
 ## <img src="/tabs/images/htb.jpg" width="35px"/> HackTheBox Write-ups
 
-Below are the write-ups of the key details of each TryHackMe room that was done.
+Below are the write-ups of the key details of each HackTheBox room that was done.
 
 TBD
 
