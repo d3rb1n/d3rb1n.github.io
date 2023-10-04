@@ -131,6 +131,106 @@ wpscan --url http://internal.thm/blog/ -e vp,u
 
 Where the `-e` is for "enumerate" and `vp` is for Vulnerable Plugins and `u` is for user ID ranges.
 
+```text
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.24
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[+] URL: http://internal.thm/blog/ [10.10.180.69]
+[+] Started: Wed Oct  4 11:41:15 2023
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entry: Server: Apache/2.4.29 (Ubuntu)
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: http://internal.thm/blog/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress readme found: http://internal.thm/blog/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] The external WP-Cron seems to be enabled: http://internal.thm/blog/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 5.4.2 identified (Insecure, released on 2020-06-10).
+ | Found By: Rss Generator (Passive Detection)
+ |  - http://internal.thm/blog/index.php/feed/, <generator>https://wordpress.org/?v=5.4.2</generator>
+ |  - http://internal.thm/blog/index.php/comments/feed/, <generator>https://wordpress.org/?v=5.4.2</generator>
+
+[+] WordPress theme in use: twentyseventeen
+ | Location: http://internal.thm/blog/wp-content/themes/twentyseventeen/
+ | Last Updated: 2023-03-29T00:00:00.000Z
+ | Readme: http://internal.thm/blog/wp-content/themes/twentyseventeen/readme.txt
+ | [!] The version is out of date, the latest version is 3.2
+ | Style URL: http://internal.thm/blog/wp-content/themes/twentyseventeen/style.css?ver=20190507
+ | Style Name: Twenty Seventeen
+ | Style URI: https://wordpress.org/themes/twentyseventeen/
+ | Description: Twenty Seventeen brings your site to life with header video and immersive featured images. With a fo...
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org/
+ |
+ | Found By: Css Style In Homepage (Passive Detection)
+ |
+ | Version: 2.3 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://internal.thm/blog/wp-content/themes/twentyseventeen/style.css?ver=20190507, Match: 'Version: 2.3'
+
+[+] Enumerating Vulnerable Plugins (via Passive Methods)
+
+[i] No plugins Found.
+
+[+] Enumerating Users (via Passive and Aggressive Methods)
+
+ Brute Forcing Author IDs -: |===================================================================================================================================|
+
+[i] User(s) Identified:
+
+[+] admin
+ | Found By: Author Posts - Author Pattern (Passive Detection)
+ | Confirmed By:
+ |  Rss Generator (Passive Detection)
+ |  Wp Json Api (Aggressive Detection)
+ |   - http://internal.thm/blog/index.php/wp-json/wp/v2/users/?per_page=100&page=1
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Wed Oct  4 11:41:21 2023
+[+] Requests Done: 13
+[+] Cached Requests: 48
+[+] Data Sent: 3.457 KB
+[+] Data Received: 9.149 KB
+[+] Memory used: 244.301 MB
+[+] Elapsed time: 00:00:05
+```
+
 Also see: [wpscan.log](wpscan.log)
 
 We find we have a username of `admin`. My first instinct was to run hydra against the web form via:
