@@ -60,9 +60,10 @@ Below are the write-ups of the key details of each TryHackMe room that was done.
 
 ## Difficulty: <span class="badge rounded-pill bg-danger" title="This is a Hard difficulty room."><i class="fa fa-skull-crossbones"></i>&nbsp;Hard</span>
 
-| Name                                           | Status                                                                                 | Summary                                                                                                                                       |
-| ---------------------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.&nbsp;**[dailybugle](thm/dailybugle/index.html)** | <span class="badge bg-success"><i class="fa fa-check-circle"></i>&nbsp;Complete</span> | Joomla SQL Injection on old OS and kernel; `john` to decrypt one `bcrypt` password. PE by running `yum` plug-in since we can `yum` as `sudo`. |
+| Name                                                | Status                                                                                 | Summary                                                                                                                                                 |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1.&nbsp;**[dailybugle](thm/dailybugle/index.html)** | <span class="badge bg-success"><i class="fa fa-check-circle"></i>&nbsp;Complete</span> | Joomla SQL Injection on old OS and kernel; `john` to decrypt one `bcrypt` password. PE by running `yum` plug-in since we can `yum` as `sudo`.           |
+| 1.&nbsp;**[internal](thm/internal/index.html)**     | <span class="badge bg-success"><i class="fa fa-check-circle"></i>&nbsp;Complete</span> | Wordpress site; Hydra to brute-force password; We find Jenkins container; port-forward that and brute-force that password. PE: is an exposure of a file |
 {: .table }
 {: .table-dark }
 {: .table-bordered }
